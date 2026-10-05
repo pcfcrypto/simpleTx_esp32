@@ -3,7 +3,11 @@
 #include "menus.h"
 #include "uart.h"
 #include "rx_params.h"
+<<<<<<< HEAD
 #define DEBUG
+=======
+
+>>>>>>> 22419c19a7d0efa7b69e34a51e2bcd32478c7d5e
 char tempstring[TEMPSTRINGLENGTH];
 
 bool powerChangeHasRun = false;
@@ -26,7 +30,11 @@ void check_link_state(uint32_t currentMicros)
 {
 
     dbout.printf("tick :: tx: %u rx: %u\n", txConected, rxConected);
+<<<<<<< HEAD
       
+=======
+      vTaskDelay(pdMS_TO_TICKS(200));
+>>>>>>> 22419c19a7d0efa7b69e34a51e2bcd32478c7d5e
     // for (size_t i = 0;crsf_devices[i].address; i++) dbout.printf("device address: 0x%x\n",crsf_devices[i].address);
 
     uint8_t tmp = LinkStatistics.rf_Mode;
@@ -87,6 +95,7 @@ void check_link_state(uint32_t currentMicros)
 const char *hdr_str_cb(const void *data)
 {
 
+<<<<<<< HEAD
     //(void)data;
     
     if (count_params_loaded(device_idx) != crsf_devices[device_idx].number_of_params)
@@ -96,6 +105,14 @@ const char *hdr_str_cb(const void *data)
         bool p=protocol_module_is_elrs();
          dbout.printf("%d\n", p);
        #endif
+=======
+    (void)data;
+    //   dbout.printf("call params: %u: %i\n",count_params_loaded(), device_idx);
+
+    if (count_params_loaded(device_idx) != crsf_devices[device_idx].number_of_params)
+    {
+        // dbout.printf("not all params: %u: %i\n",count_params_loaded(0), device_idx);
+>>>>>>> 22419c19a7d0efa7b69e34a51e2bcd32478c7d5e
 
         snprintf(tempstring, sizeof tempstring, "%s %s", crsf_devices[device_idx].name, "LOADING");
     }

@@ -105,10 +105,23 @@ void Oled::setMainScreen(char *name, crsfLinkStatistics_t LinkStatistics, uint8_
 
             display.setFont(u8g2_font_10x20_mr);
             // display.setCursor(0,32);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
             float vBat = batteryVoltage.voltage;
             char bat[8];
 
             int ret = snprintf(bat, sizeof bat, "%.2f", vBat/10);
+<<<<<<< HEAD
+=======
+=======
+            float vBat = 5; // (float)batteryVoltage.voltage/10;
+            char bat[64];
+
+            int ret = snprintf(bat, sizeof bat, "%.2f", vBat);
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
             Oled::Println((char *)"");
             Oled::Println((char *)"");
             Oled::Println(bat);

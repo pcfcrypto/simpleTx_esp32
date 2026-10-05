@@ -34,7 +34,15 @@
 #define DEBUG_SYNC
 #define DEBUG_HALF_DUPLEX
 #define DEBUG_CRSF_FRAMETYPE_RADIO_ID
+<<<<<<< HEAD
 #define DEBUG
+=======
+<<<<<<< HEAD
+#define DEBUG
+=======
+
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
 #include <Arduino.h>
 
 #include "config.h"
@@ -52,7 +60,11 @@ TaskHandle_t elrsTaskHandler;
 TaskHandle_t outputTaskHandler;
 
 rc_input_t rcInput;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
 Oled oled;
 //#define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
@@ -66,7 +78,22 @@ void Outputinit()
 void OutputTask()
 {
   //for (;;)
+<<<<<<< HEAD
 
+=======
+=======
+
+//#define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
+
+void OutputTask(void *pvParameters)
+{
+
+  Oled oled;
+  oled.init();
+
+  for (;;)
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
   {
     read_ui_buttons();
     if (entered == -1)
@@ -74,10 +101,18 @@ void OutputTask()
       if (params_loaded < crsf_devices[0].number_of_params)
       {
         char *load = (char *)hdr_str_cb(menuItems); // TODO
+<<<<<<< HEAD
 
         //dbout.printf("hdr:%s\n", load);
 
 
+=======
+<<<<<<< HEAD
+        //dbout.printf("hdr:%s\n", load);
+=======
+        dbout.printf("hdr:%s\n", load);
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
 
         oled.PrintLoad(load);
 
@@ -129,8 +164,17 @@ void OutputTask()
 } // end output task
 
 // Task2 - ELRS task - main loop
+<<<<<<< HEAD
 //void ElrsTask(void *pvParameters)
 void ElrsInit()
+=======
+<<<<<<< HEAD
+//void ElrsTask(void *pvParameters)
+void ElrsInit()
+=======
+void ElrsTask(void *pvParameters)
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
 {
   // setup channels
   for (uint8_t i = 0; i < CRSF_MAX_CHANNEL; i++)
@@ -140,19 +184,41 @@ void ElrsInit()
 
   // uart debug
   dbout.begin(115200, SERIAL_8N1, 40, 39, false, 500);
+<<<<<<< HEAD
 
 
+=======
+<<<<<<< HEAD
+  //delay(2000);
+=======
+  delay(2000);
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
   elrs.begin(SERIAL_BAUDRATE, SERIAL_8N1, GPIO_PIN_RCSIGNAL_RX, GPIO_PIN_RCSIGNAL_TX, false, 500);
   dbout.write("starting elrs\n");
   // digitalWrite(DIGITAL_PIN_LED, LOW); //LED ON
   device_idx = 0;
   crsfdevice_init();
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+  //delay(2000);
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
 }
 
 void ElrsTask()
 {
+<<<<<<< HEAD
 
+=======
+  //for (;;)
+=======
+  delay(2000);
+
+  for (;;)
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
   {
     uint32_t currentMicros = micros();
     if (currentMicros > tickTime)
@@ -201,7 +267,11 @@ void setup()
 {
 
   initGpio();
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
   Outputinit();
   ElrsInit();
 
@@ -215,6 +285,21 @@ void setup()
       -1,               // priority of the task 
       &elrsTaskHandler, // Task handle to keep track of created task 
       1);               // pin task to core 1
+<<<<<<< HEAD
+=======
+=======
+  //initUsb();
+
+  xTaskCreatePinnedToCore(
+      ElrsTask,         /* Task function. */
+      "ElrsTask",       /* name of task. */
+      10000,            /* Stack size of task */
+      NULL,             /* parameter of the task */
+      -1,               /* priority of the task */
+      &elrsTaskHandler, /* Task handle to keep track of created task */
+      1);               /* pin task to core 1 */
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
   delay(500);
 
   xTaskCreatePinnedToCore(
@@ -224,15 +309,34 @@ void setup()
       NULL,
       1,
       &outputTaskHandler,
+<<<<<<< HEAD
       0); // pin task to core 0 
   delay(500);
   */
+=======
+<<<<<<< HEAD
+      0); // pin task to core 0 
+  delay(500);
+  */
+=======
+      0); /* pin task to core 0 */
+  delay(500);
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
 }
 
 void loop()
 {
+<<<<<<< HEAD
   ElrsTask();
   OutputTask();
+=======
+<<<<<<< HEAD
+  ElrsTask();
+  OutputTask();
+=======
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
+>>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
 }
 
 ////////////////////////

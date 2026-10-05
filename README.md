@@ -16,3 +16,4 @@ its based on esp32 mcu
 planning to make a simple customizable handset for whatever you want/need.
 
 more updates comming :D
+...

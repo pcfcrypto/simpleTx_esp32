@@ -10,7 +10,7 @@ void read_ui_buttons()
   bool enter = digitalRead(enterBt);
   bool back = digitalRead(backBt);
   // TODO bt bouncer
-  delay(150);
+  //delay(150);
 
   // dbout.printf("%i:%i::%i:%i\n",enter,back,up,down);
   // dbout.printf("%i:\n",params_loaded);

@@ -9,7 +9,7 @@ char tempstring[TEMPSTRINGLENGTH];
 bool powerChangeHasRun = false;
 
 uint32_t tickTime = 0;
-uint32_t tickInterval = 2000000; // 2 sec. to check if rx or tx connect/disconnect
+uint32_t tickInterval = 1000000; // 1 sec. to check if rx or tx connect/disconnect
 
 uint16_t rates[] = {0, 25, 50, 100, 150, 200};
 
@@ -25,8 +25,8 @@ void crsfdevice_init()
 void check_link_state(uint32_t currentMicros)
 {
 
-    dbout.printf("tick :: tx: %u rx: %u\n", txConected, rxConected);
-      vTaskDelay(pdMS_TO_TICKS(200));
+    dbout.printf("tick :: tx: %u rx: %u : 0x%x 0x%x, %s\n", txConected, rxConected, crsf_devices[0].address, crsf_devices[1].address,protocol_module_is_elrs( ) ? "ELRS" : "non-ELRS");
+     
     // for (size_t i = 0;crsf_devices[i].address; i++) dbout.printf("device address: 0x%x\n",crsf_devices[i].address);
 
     uint8_t tmp = LinkStatistics.rf_Mode;
@@ -72,6 +72,7 @@ void check_link_state(uint32_t currentMicros)
     }
     else
     {
+        module_type = MODULE_UNKNOWN;
         crsf_devices[0].address = 0;
         strlcpy(crsf_devices[0].name, (const char *)"", CRSF_MAX_NAME_LEN);
         local_info.good_pkts = 0;
@@ -120,15 +121,7 @@ void bt_handle(uint8_t value)
     dbout.println("bt_handle");
 
     powerChangeHasRun = true;
-<<<<<<< HEAD
     
-=======
-<<<<<<< HEAD
-    
-=======
-       vTaskDelay(pdMS_TO_TICKS(200));
->>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
->>>>>>> e2e7933d30650a960dff0d7f5274bde59cb39b39
     clickCurrentMicros = crsfTime + 500000; // 0.5sec
     dbout.printf("times: %u:%u\n", clickCurrentMicros / 1000, crsfTime / 1000);
     // powerChangeHasRun=true;

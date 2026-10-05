@@ -120,7 +120,11 @@ void bt_handle(uint8_t value)
     dbout.println("bt_handle");
 
     powerChangeHasRun = true;
+<<<<<<< HEAD
     
+=======
+       vTaskDelay(pdMS_TO_TICKS(200));
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
     clickCurrentMicros = crsfTime + 500000; // 0.5sec
     dbout.printf("times: %u:%u\n", clickCurrentMicros / 1000, crsfTime / 1000);
     // powerChangeHasRun=true;

@@ -228,9 +228,14 @@ void CRSF_changeParam(uint8_t n_param, uint8_t n_chunk)
   CRSF_write(packetCmd, 8, 20000);
   delay(500);
   n_chunk = 0;
+<<<<<<< HEAD
 #if defined(DEBUG)
   dbout.printf("changed param:%u:%u  \n ", n_param, n_chunk);
 #endif
+=======
+
+  dbout.printf("changed param:%u:%u  \n ", n_param, n_chunk);
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
   CRSF_read_param(n_param, n_chunk, ELRS_ADDRESS);
 }
 
@@ -304,7 +309,11 @@ void CRSF_send_id(uint8_t modelId)
 void CRSF_write(uint8_t crsfPacket[], uint8_t size, int32_t add_delay)
 {
 
+<<<<<<< HEAD
 #if defined(DEBUG)
+=======
+#if defined(debug)
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
   if (crsfPacket[2] != TYPE_CHANNELS)
     dbout.printf("elrs write 0x%x\n", crsfPacket[2]);
 #endif
@@ -438,6 +447,7 @@ void serialEvent()
 
           if (id == CRSF_FRAMETYPE_BATTERY_SENSOR)
           {
+<<<<<<< HEAD
             #if defined(DEBUG)
             dbout.print("battery:");
             #endif
@@ -445,6 +455,12 @@ void serialEvent()
             {
                batteryVoltage.voltage = value; //todo
                dbout.printf("value: %u\n",value);
+=======
+            dbout.print("battery");
+            if (getCrossfireTelemetryValue(3, &value, 2))
+            {
+              // batteryVoltage.voltage = value; //todo
+>>>>>>> 21bf97e0608fe4b4ea7fe3bbc61020d63e1fff36
             }
           }
           if (id == CRSF_FRAMETYPE_RADIO_ID)

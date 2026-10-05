@@ -52,6 +52,7 @@ TaskHandle_t elrsTaskHandler;
 TaskHandle_t outputTaskHandler;
 
 rc_input_t rcInput;
+
 Oled oled;
 //#define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
@@ -65,6 +66,7 @@ void Outputinit()
 void OutputTask()
 {
   //for (;;)
+
   {
     read_ui_buttons();
     if (entered == -1)
@@ -72,7 +74,10 @@ void OutputTask()
       if (params_loaded < crsf_devices[0].number_of_params)
       {
         char *load = (char *)hdr_str_cb(menuItems); // TODO
+
         //dbout.printf("hdr:%s\n", load);
+
+
 
         oled.PrintLoad(load);
 
@@ -135,17 +140,19 @@ void ElrsInit()
 
   // uart debug
   dbout.begin(115200, SERIAL_8N1, 40, 39, false, 500);
-  //delay(2000);
+
+
   elrs.begin(SERIAL_BAUDRATE, SERIAL_8N1, GPIO_PIN_RCSIGNAL_RX, GPIO_PIN_RCSIGNAL_TX, false, 500);
   dbout.write("starting elrs\n");
   // digitalWrite(DIGITAL_PIN_LED, LOW); //LED ON
   device_idx = 0;
   crsfdevice_init();
-  //delay(2000);
+
 }
+
 void ElrsTask()
 {
-  //for (;;)
+
   {
     uint32_t currentMicros = micros();
     if (currentMicros > tickTime)
@@ -194,6 +201,7 @@ void setup()
 {
 
   initGpio();
+
   Outputinit();
   ElrsInit();
 

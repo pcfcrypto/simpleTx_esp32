@@ -35,7 +35,10 @@
 #define DEBUG_HALF_DUPLEX
 #define DEBUG_CRSF_FRAMETYPE_RADIO_ID
 #define DEBUG
+<<<<<<< HEAD
 */
+=======
+>>>>>>> cc25fdac64c8725754d4c174701aef84850c5550
 #include <Arduino.h>
 
 #include "config.h"
@@ -207,7 +210,6 @@ void setup()
   ElrsInit();
 
   //initUsb();
-
 }
 
 void loop()
